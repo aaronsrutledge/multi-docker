@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t aaronsrutledge/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t aaronrutledge/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run aaronsrutledge/multi-docker npm run test -- --coverage
+  - docker run aaronrutledge/multi-docker npm run test -- --coverage
 
 after_success:
-  - docker build -t aaronsrutledge/multi-client ./client
-  - docker build -t aaronsrutledge/multi-nginx ./nginx
-  - docker build -t aaronsrutledge/multi-server ./server
-  - docker build -t aaronsrutledge/multi-worker ./worker
+  - docker build -t aaronrutledge/multi-client ./client
+  - docker build -t aaronrutledge/multi-nginx ./nginx
+  - docker build -t aaronrutledge/multi-server ./server
+  - docker build -t aaronrutledge/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push aaronsrutledge/multi-client
-  - docker push aaronsrutledge/multi-nginx
-  - docker push aaronsrutledge/multi-server
-  - docker push aaronsrutledge/multi-worker
+  - docker push aaronrutledge/multi-client
+  - docker push aaronrutledge/multi-nginx
+  - docker push aaronrutledge/multi-server
+  - docker push aaronrutledge/multi-worker
